@@ -8,12 +8,19 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class ApiConstants {
   ApiConstants._();
 
-  static const String baseUrl = ''; // Isi dengan base URL NewsAPI
+  static const String baseUrl = 'https://newsapi.org/v2'; // Isi dengan base URL NewsAPI
   
-  static String get apiKey => (dotenv.maybeGet('NEWS_API_KEY') ?? '').trim();
+  static String get apiKey => (dotenv.maybeGet('NEWS_API_KEY') ?? '').trim(); //ini getter, yang dipanggil key-nya
 
+  // untuk klasifikasi negara yang akanditampilkan beritanya di top-headlines
   static const String country = 'us';
+
+  // untuk bahasa yang akan ditampilkan ketika proses pencarian
   static const String language = 'en';
-  static const int pageSize = 30;
+
+  // untuk memberitau berapa banyak berita yang akan ditampilakan dalam sekali request
+  static const int pageSize = 30; // tidak ada maksimal, selama kita menggunakan future dart
+
+  // sebagai batas waktu berapa lama aplikasi ata client dapat terhubung dengan API
   static const Duration timeout = Duration(seconds: 15);
 }
