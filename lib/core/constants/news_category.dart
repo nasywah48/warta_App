@@ -1,5 +1,6 @@
 /// Kategori berita yang didukung oleh endpoint top-headlines NewsAPI.
-enum NewsCategory {
+enum NewsCategory { // singkatan dari enumeration
+// tipe data khusus yang digunakan untuk menyimpan sekumpulan nilai konstanta yang tetap dan sudah ditentukan sebelumnya
   general('Utama'),
   business('Bisnis'),
   technology('Teknologi'),
@@ -14,5 +15,5 @@ enum NewsCategory {
   final String label;
 
   /// Nilai yang dikirim ke API.
-  String get apiValue => name;
+  String get apiValue => name; // apiValue adalah sebuah properti (variabel) di dalam NewsCategory yang bertugas sebagai penerjemah bahasa Flutter ke bahasa API.
 }

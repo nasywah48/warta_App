@@ -4,8 +4,6 @@ import '../../../../core/router/app_router.dart';
 import '../../../../core/utils/date_formatter.dart';
 import '../../../../data/models/article.dart';
 import '../../../widgets/article_image.dart';
-import '../../../widgets/bookmark_button.dart';
-import '../../../widgets/source_label.dart';
 
 /// Kartu besar untuk berita utama (artikel pertama).
 class FeaturedArticleCard extends StatelessWidget {
@@ -16,45 +14,73 @@ class FeaturedArticleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final description = article.description;
 
     return InkWell(
       onTap: () => AppRouter.openArticle(context, article),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      child: AspectRatio(
+        aspectRatio: 3 / 2,
+        child: Stack(
+          fit: StackFit.expand,
           children: [
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: ArticleImage(url: article.imageUrl, radius: 20),
-            ),
-            const SizedBox(height: 14),
-            SourceLabel(name: article.sourceName),
-            const SizedBox(height: 6),
-            Text(article.title, style: theme.textTheme.titleLarge),
-            if (description != null && description.isNotEmpty) ...[
-              const SizedBox(height: 8),
-              Text(
-                description,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
+            ArticleImage(url: article.imageUrl, radius: 0),
+            const DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0x33000000), Color(0xE6000000)],
                 ),
               ),
-            ],
-            Row(
-              children: [
-                Text(
-                  DateFormatter.relative(article.publishedAt),
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primary,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      article.sourceName,
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                    ),
                   ),
-                ),
-                const Spacer(),
-                BookmarkButton(article: article),
-              ],
+                  const SizedBox(height: 8),
+                  Text(
+                    article.title,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          DateFormatter.relative(article.publishedAt),
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ),
+                      const Icon(
+                        Icons.arrow_forward_rounded,
+                        size: 18,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

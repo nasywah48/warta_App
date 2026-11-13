@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_dotenv: ^6.0.1
+  flutter_riverpod: ^3.4.3
+  http: ^1.6.0
   intl: ^0.20.3
   shared_preferences: ^2.5.6
   url_launcher: ^6.3.3
@@ -32,17 +34,17 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: assets/logo/app_icon.png
-  adaptive_icon_background: "#1F5FA8"
-  adaptive_icon_foreground: assets/logo/app_icon_foreground.png
+  image_path: assets/logo/ic_launcher.png
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: assets/logo/ic_launcher_foreground.png
   remove_alpha_ios: true
 
 # Splash screen native → jalankan: dart run flutter_native_splash:create
 flutter_native_splash:
-  color: "#1F5FA8"
-  image: assets/logo/splash_logo.png
+  color: "#D7191F"
+  image: assets/logo/ic_launcher_foreground.png
   android_12:
-    color: "#1F5FA8"
-    image: assets/logo/splash_logo_android12.png
-    icon_background_color: "#1F5FA8"
+    color: "#D7191F"
+    image: assets/logo/ic_launcher_foreground.png
+    icon_background_color: "#D7191F"
   fullscreen: false

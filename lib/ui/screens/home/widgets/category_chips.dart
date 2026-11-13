@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/providers/headlines_provider.dart';
 
 import '../../../../core/constants/news_category.dart';
 
 /// TODO: Ubah CategoryChips menjadi ConsumerWidget saat Riverpod ditambahkan
-class CategoryChips extends StatefulWidget {
+class CategoryChips extends ConsumerWidget {
   const CategoryChips({super.key});
-
-  @override
-  State<CategoryChips> createState() => _CategoryChipsState();
-}
-
-class _CategoryChipsState extends State<CategoryChips> {
-  // State sementara sebelum menggunakan Provider
-  NewsCategory _selected = NewsCategory.general;
-
-  @override
-  Widget build(BuildContext context) {
+   @override
+  Widget build(BuildContext context, WidgetRef ref) {
     const categories = NewsCategory.values;
+    final selected = ref.watch(SelectedCategoryProvider);
 
     return SizedBox(
       height: 56,
@@ -29,12 +23,16 @@ class _CategoryChipsState extends State<CategoryChips> {
           final category = categories[index];
           return ChoiceChip(
             label: Text(category.label),
-            selected: category == _selected,
+            selected: category == selected,
             showCheckmark: false,
-            onSelected: (_) => setState(() => _selected = category),
+            onSelected: (_) => ref.read(SelectedCategoryProvider.notifier).select(category),
           );
         },
       ),
     );
   }
 }
+
+
+
+ 
