@@ -39,6 +39,11 @@ class AppNavigationBar extends StatelessWidget {
           selectedIcon: const Icon(Icons.bookmarks_rounded),
           label: 'Tersimpan',
         ),
+        NavigationDestination(
+          icon: Icon(Icons.notifications_none_rounded),
+          selectedIcon: Icon(Icons.notifications_rounded),
+          label: 'Notifikasi',
+        ),
       ],
     );
   }

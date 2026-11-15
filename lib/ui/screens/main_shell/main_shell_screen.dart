@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/providers/navigation_provider.dart';
 
+import '../notifications/notifications_screen.dart';
 import '../bookmarks/bookmarks_screen.dart';
 import '../home/home_screen.dart';
 import '../search/search_screen.dart';
@@ -11,7 +12,7 @@ import 'widgets/app_navigation_bar.dart';
 class MainShellScreen extends ConsumerWidget {
   const MainShellScreen({super.key});
 
-  static const _pages = [HomeScreen(), SearchScreen(), BookmarksScreen()];
+  static const _pages = [HomeScreen(), SearchScreen(), BookmarksScreen(), NotificationsScreen()];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

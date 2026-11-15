@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/providers/navigation_provider.dart';
+import 'package:news_app/providers/notifications_provider.dart';
 
 import '../../../../core/utils/date_formatter.dart';
+import '../../notifications/notifications_screen.dart';
+import '../../../widgets/theme_toggle_button.dart';
 
 class HomeAppBar extends ConsumerWidget {
   const HomeAppBar({super.key});
@@ -10,6 +13,7 @@ class HomeAppBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final unread = ref.watch(unreadCountProvider);
 
     return SliverAppBar(
       floating: true,
@@ -22,6 +26,7 @@ class HomeAppBar extends ConsumerWidget {
         ),
       ),
       actions: [
+        const ThemeToggleButton(),
         IconButton(
           tooltip: 'Cari berita',
           icon: const Icon(Icons.search_rounded),
@@ -32,19 +37,20 @@ class HomeAppBar extends ConsumerWidget {
         IconButton(
           tooltip: 'Notifikasi',
           icon: Badge(
+            isLabelVisible: unread > 0,
             smallSize: 8,
             backgroundColor: theme.colorScheme.primary,
             child: const Icon(Icons.notifications_none_rounded),
           ),
           onPressed: () {
-            // TODO: halaman notifikasi
-          },
-        ),
-        IconButton(
-          tooltip: 'Menu',
-          icon: const Icon(Icons.menu_rounded),
-          onPressed: () {
-            // TODO: menu / drawer
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => Scaffold(
+                  appBar: AppBar(),
+                  body: const NotificationsScreen(),
+                ),
+              ),
+            );
           },
         ),
         const SizedBox(width: 8),
