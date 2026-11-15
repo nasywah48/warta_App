@@ -9,11 +9,9 @@
 // class HeadlinesNotifier {}
 
 // kategori yang sedang dipilih halaman beranda
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/core/constants/news_category.dart';
 import 'package:news_app/data/models/article.dart';
-import 'package:news_app/data/repositories/news_repository.dart';
 import 'package:news_app/providers/depedency_provider.dart';
 
 class SelectedCategoryNotifier extends Notifier<NewsCategory>{

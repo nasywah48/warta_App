@@ -6,7 +6,6 @@
 // 3. Buat fungsi search(String query) untuk memanggil NewsRepository.searchArticles() dan menyimpan hasilnya di state
 // 4. Buat searchProvider (AsyncNotifierProvider) untuk digunakan di UI
 
-import 'dart:collection';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/data/models/article.dart';

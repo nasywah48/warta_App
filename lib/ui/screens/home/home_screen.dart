@@ -4,7 +4,6 @@ import 'package:news_app/providers/headlines_provider.dart';
 // Sesuaikan jika provider kategori ada di file lain:
 // import 'package:news_app/providers/category_provider.dart';
 
-import 'widgets/category_chips.dart';
 import 'widgets/headlines_section.dart';
 import 'widgets/home_app_bar.dart';
 
